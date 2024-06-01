@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url("bak.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    margin: 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:black;
+    padding: 10px;
+    border:2px solid green;
+}
+
+.navbar .logo {
+    color: #fff;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.navbar .logo:hover {
+    text-decoration: underline;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-left: 4px;
+}
+/* ------- */
+.navbar i{
+    margin-right:0px;
+}
+/* ------- */
+
+.navbar li {
+    padding-right: 50px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 800px;
+    padding: 20px;
+    text-align: center;
+    background-color: black;
+    border: 5px solid green;
+    border-radius: 0px 50px 0 50px;
+    box-shadow: #fff;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: auto; /* Center the container horizontally */
+    margin-top: 60px; /* Add some top margin for spacing between navbar and container */
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #000;
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#create {
+    background-color: #28a745;
+}
+
+#deposit {
+    background-color: #ffc107;
+    margin-right: 5px;
+}
+
+#withdraw {
+    background-color: #dc3545;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+span {
+    font-weight: bold;
+    color: #ffcc00;
+}
+
+/* Additional styles or modifications can be added here */

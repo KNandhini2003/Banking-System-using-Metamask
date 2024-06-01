@@ -1,0 +1,73 @@
+html {
+    background-image:url("bak.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    color: #fff;
+}
+
+div {
+    text-align: center;
+    background-color: black;
+    padding: 20px;
+    border:5px solid green;
+    backdrop-filter: blur(18px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 8px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 14px;
+    color: #000;
+    background-color: #fff;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#create {
+    background-color: #28a745;
+}
+
+#deposit {
+    background-color: #ffc107;
+    margin-right: 5px;
+}
+
+#withdraw {
+    background-color: #dc3545;
+}
+
+p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+span {
+    font-weight: bold;
+}
+/* //-------------------- */
+

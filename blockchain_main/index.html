@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <!-- <script src="./bank.js"></script> -->
+</head>
+<body>
+    <div>
+<input type="text" id="amount">
+<p id="balance"></p>
+<button id=connect onclick="Connect()" style="position: absolute;left: 500px;">Connect</button>
+<button id="deposit" onclick="deposit()">Deposit</button>
+<button id="withdraw" onclick="withdraw()">withdraw</button>
+    </div>
+
+<script>
+var web3;
+var address="0x2356f8e379f56a7028C16F762E320A57C1923c56";
+async function Connect(){
+    await window.web3.currentProvider.enable();
+    web3=new Web3(window.web3.currentProvider);
+}
+if(typeof web3!=='undefine'){
+   web3=new Web3(window.web3.currentProvider);
+}
+else{
+    web3=new Web3(new Web3.Provider.HttpProvider("HTTP://127.0.0.1:7545"));
+}
+var abi=[[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "amt",
+				"type": "int256"
+			}
+		],
+		"name": "deposit_money",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "amt",
+				"type": "int256"
+			}
+		],
+		"name": "withdraw",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getBalance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "int256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	}
+]];
+var contract=new web3.eth.Contract(abi,address);
+function deposit(){
+    var inputval=document.getElementById("amount").value;
+    web3.eth.getAccounts().then(function(account){
+        return contract.methods.deposit_money(inputval).send({from: account[0]});
+    }).then(function(tmp){
+        $("amount").val("");
+        show_balance();
+    }).catch(function(tmp){
+        alert(tmp);
+    })
+}
+function withdraw(){
+    var inputval=document.getElementById("amount").value;
+    web3.eth.getAccounts().then(function(account){
+        return contract.methods.withdraw(inputval).send({from: account[0]});
+    }).then(function(tmp){
+        $("amount").val("");
+        show_balance();
+    }).catch(function(tmp){
+        alert(tmp);
+    })
+
+}
+function show_balance(){
+    contract.methods.getBalance().call().then(function(balance){
+            $("#balance").html(balance);
+    })
+}
+</script>
+
+</body>
+</html>

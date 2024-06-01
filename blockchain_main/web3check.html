@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Check Web3</title>
+</head>
+<body>
+  <h1>Checking Web3 Availability</h1>
+  <p id="message"></p>
+  
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <script>
+    // Check if Web3 is available
+    async function checkWeb3() {
+      if (typeof window.ethereum !== 'undefined') {
+        // Modern dapp browsers
+        const web3 = new Web3(window.ethereum);
+        try {
+          // Request account access if needed
+          await window.ethereum.enable();
+          document.getElementById("message").textContent = "web3 is available";
+          // Now you can proceed with your web3-related code here using the 'web3' instance.
+        } catch (error) {
+          // User denied account access
+          document.getElementById("message").textContent = "web3 access denied by the user";
+        }
+      } else if (typeof window.web3 !== 'undefined') {
+        // Legacy dapp browsers
+        const web3 = new Web3(window.web3.currentProvider);
+        document.getElementById("message").textContent = "web3 is available";
+        // Now you can proceed with your web3-related code here using the 'web3' instance.
+      } else {
+        // Non-dapp browsers
+        document.getElementById("message").textContent = "web3 is not available";
+      }
+    }
+
+    // Call the function to check web3 when the page loads
+    checkWeb3();
+  </script>
+</body>
+</html>

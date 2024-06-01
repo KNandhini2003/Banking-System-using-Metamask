@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Login</title>
+  </head>
+  <body>
+    <h1>Login Page</h1>
+    <form id="loginForm">
+      <label for="password">Password:</label>
+      <input type="password" id="password" required />
+      <button type="submit">Login</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.5.2/dist/web3.min.js"></script>
+    <script>
+      const contractAddress = "0x9c07E0DD481b5cB67Aba301e770eBC3Db3C74412"; // Replace this with the deployed contract address
+      const contractABI = [[
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "username",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "password",
+				"type": "string"
+			}
+		],
+		"name": "register",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "password",
+				"type": "string"
+			}
+		],
+		"name": "login",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]]; // Replace this with the ABI of your deployed contract
+
+      const web3 = new Web3(window.ethereum);
+      const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+      document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const password = document.getElementById("password").value;
+        try {
+          const username = await contract.methods.login(password).call({ from: web3.eth.defaultAccount });
+          document.getElementById("result").innerText = `Logged in as ${username}`;
+        } catch (err) {
+          document.getElementById("result").innerText = `Error: ${err.message}`;
+        }
+      });
+    </script>
+  </body>
+</html>
